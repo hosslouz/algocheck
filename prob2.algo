@@ -1,0 +1,48 @@
+// methode1
+ALGORITHM the_sum_of_distinct_elements  ; 
+  Tab1, tab2 : ARRAY_OF INTEGER [5];
+     i,j,elm, : INTEGER;
+     j,elm,sum : INTEGER := 0;
+BEGIN
+ (FOR i FROM 0 TO Tab1.length -1 STEP 1  DO)
+        IF (Tab1[i] =tab2[j]) THEN
+            elm:=elm + Tab1[i];
+        END_IF
+    END_FOR
+    Tab2[j]=Tab2[j]+1;
+    sum=elm*2
+    write sum   
+    
+END  
+
+
+
+// Methode 2
+VAR
+   htab : HASH_TABLE<INTEGER,INTEGER>;
+   tab: INTEGER[5];
+   i, j,count , element , sum : INTEGER := 0 ;
+   
+BEGIN
+   Read(tab);
+   FOR i FROM 0 TO tab.length -1 STEP 1  DO
+    FOR j FROM 0 TO tab.length -1 STEP 1  DO
+       IF (htab.lookup(tab[i])=true) THEN
+           count := htab.get(tab[i]);
+           htab.insert(tab[i],count+1);
+       ELSE
+           htab.insert(tab[i],1);
+       END_IF
+   END_FOR
+  FOR i FROM 0 TO tab.length -1 STEP 1  DO
+    FOR j FROM 0 TO tab.length -1 STEP 1  DO
+       IF (htab.get(tab[i]) <> tab[j]) THEN
+           element := element ; 
+           else 
+           element := element+tab[i] ; 
+           BREAK;
+       END_IF
+   END_FOR
+sum := element*2 ; 
+   Write(sum);
+END
